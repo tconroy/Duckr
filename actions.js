@@ -1,30 +1,3 @@
-// Users Actions
-{
-	type: AUTH_USER,
-	uid,
-}
-
-{
-	type: UNAUTH_USER,
-}
-
-{
-	type: FETCHING_USER,
-}
-
-{
-	type: FETCHING_USER_FAILURE,
-	error: 'Error Fetching User',
-}
-
-{
-	type: FETCHING_USER_SUCCESS,
-	uid,
-	user,
-	timestamp,
-}
-
-
 // Duck Actions
 {
 	type: FETCHING_DUCK,
