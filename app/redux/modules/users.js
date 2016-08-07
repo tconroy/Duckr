@@ -1,4 +1,4 @@
-import { auth, logout, saveUser } from 'helpers/auth'
+import auth, { logout, saveUser } from 'helpers/auth'
 import { formatUserInfo } from 'helpers/utils'
 
 /*
@@ -27,13 +27,14 @@ export function unauthUser () {
   }
 }
 
-function fetchingUser () {
+export function fetchingUser () {
   return {
     type: FETCHING_USER,
   }
 }
 
-function fetchingUserFailure (error) {
+export function fetchingUserFailure (error) {
+  console.warn(error)
   return {
     type: FETCHING_USER_FAILURE,
     error: 'Error Fetching User',
@@ -49,7 +50,7 @@ export function fetchingUserSuccess (uid, user, timestamp) {
   }
 }
 
-export function fetchAndHandleAuthUser () {
+export function fetchAndHandleAuthedUser () {
   return function (dispatch) {
     dispatch(fetchingUser())
     return auth().then(({user, credential}) => {
@@ -72,7 +73,7 @@ export function logoutAndUnauth () {
 
 export function removeFetchingUser () {
   return {
-    type: REMOVE_FETCHING_USER
+    type: REMOVE_FETCHING_USER,
   }
 }
 
@@ -106,10 +107,10 @@ function user (state = initialUserState, action) {
   Users Reducer
  */
 const initialState = {
-  error: '',
-  authedId: '',
   isFetching: true,
+  error: '',
   isAuthed: false,
+  authedId: '',
 }
 
 export default function users (state = initialState, action) {
@@ -141,6 +142,12 @@ export default function users (state = initialState, action) {
         error: action.error,
       }
 
+    case REMOVE_FETCHING_USER:
+      return {
+        ...state,
+        isFetching: false,
+      }
+
     case FETCHING_USER_SUCCESS:
       return action.user === null
         ? {
@@ -154,11 +161,7 @@ export default function users (state = initialState, action) {
           error: '',
           [action.uid]: user(state[action.uid], action),
         }
-    case REMOVE_FETCHING_USER:
-      return {
-        ...state,
-        isFetching: false,
-      }
+
     default:
       return state
   }

@@ -50,7 +50,7 @@ const base = {
   },
   resolve: {
     root: path.resolve('./app'), // allows just "containers" instead of "../containers"
-  }
+  },
 }
 
 const developmentConfig = {

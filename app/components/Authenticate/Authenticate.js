@@ -8,7 +8,7 @@ Authenticate.propTypes = {
   onAuth: PropTypes.func.isRequired,
 }
 
-export default function Authenticate ({error, isFetching, onAuth}) {
+export default function Authenticate ({onAuth, isFetching, error}) {
   return (
     <div className={centeredContainer}>
       <h1 className={largeHeader}>{'Authenticate'}</h1>

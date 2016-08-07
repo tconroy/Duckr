@@ -8,8 +8,8 @@ FacebookAuthButton.propTypes = {
 
 export default function FacebookAuthButton ({onAuth, isFetching}) {
   return (
-    <button className={button} onClick={onAuth}>
-      {isFetching
+    <button onClick={onAuth} className={button}>
+      {isFetching === true
         ? 'Loading'
         : 'Login with Facebook'}
     </button>

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
-import { Navigation } from 'components'
 import { connect } from 'react-redux'
+import { Navigation } from 'components'
 import { container, innerContainer } from './styles.css'
 import { bindActionCreators } from 'redux'
 import * as userActionCreators from 'redux/modules/users'
@@ -35,18 +35,16 @@ const MainContainer = React.createClass({
   render () {
     return this.props.isFetching === true
     ? null
-    : (
-        <div className={container}>
-          <Navigation isAuthed={this.props.isAuthed} />
-          <div className={innerContainer}>
-            {this.props.children}
-          </div>
+    : <div className={container}>
+        <Navigation isAuthed={this.props.isAuthed} />
+        <div className={innerContainer}>
+          {this.props.children}
         </div>
-      )
+      </div>
   },
 })
 
 export default connect(
-  (state) => ({ isAuthed: state.isAuthed, isFetching: state.isFetching }),
+  ({users}) => ({ isAuthed: users.isAuthed, isFetching: users.isFetching }),
   (dispatch) => bindActionCreators(userActionCreators, dispatch)
 )(MainContainer)
