@@ -32,7 +32,7 @@ const FeedContainer = React.createClass({
 })
 
 function mapStateToProps ({feed}) {
-  const { newDucksAvailable, error, isFetching } = feed
+  const { newDucksAvailable, error, isFetching, duckIds } = feed
   return {
     newDucksAvailable,
     error,

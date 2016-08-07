@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { newDuckContainer, header } from './styles.css'
 import { errorMsg } from 'sharedStyles/styles.css'
+import { DuckContainer } from 'containers'
 
 NewDucksAvailable.propTypes = {
   handleClick: PropTypes.func.isRequired,
@@ -13,10 +14,6 @@ function NewDucksAvailable ({handleClick}) {
     </div>
   )
 }
-
-
-
-
 
 Feed.propTypes = {
   duckIds: PropTypes.array.isRequired,
@@ -35,7 +32,7 @@ export default function Feed (props) {
           ? <p className={header}>{'this is unfortunate.'} <br/> {'it appears there are no ducks yet.'}</p>
           : null}
         {props.duckIds.map((id) => (
-          <p>{'Duck Id: ' + id}</p>
+          <DuckContainer duckId={id} key={id} />
         ))}
         {props.error ? <p className={errorMsg}>{props.error}</p> : null}
       </div>
