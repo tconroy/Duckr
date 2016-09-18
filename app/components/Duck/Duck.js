@@ -41,7 +41,7 @@ export default function Duck (props) {
     <div
       className={duckContainer}
       style={{cursor: props.hideReplyBtn === true ? 'default' : 'pointer'}}
-      onClick={props.onClick}>
+      onClick={props.handleClick}>
         <img src={props.duck.avatar} className={avatar} />
         <div className={contentContainer}>
           <div className={header}>
