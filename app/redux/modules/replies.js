@@ -1,4 +1,4 @@
-import { postReply } from 'helpers/api'
+import { postReply, fetchReplies } from 'helpers/api'
 
 // Replies consts
 export const FETCHING_REPLIES = 'FETCHING_REPLIES'
@@ -40,6 +40,15 @@ export function addAndHandleReply (duckId, reply) {
       dispatch(removeReply(duckId, replyWithId.replyId))
       dispatch(addReplyError(error))
     })
+  }
+}
+
+export function fetchAndHandleReplies (duckId) {
+  return function (dispatch) {
+    dispatch(fetchingReplies())
+    fetchReplies(duckId)
+      .then((replies) => dispatch(fetchingRepliesSuccess(duckId, replies, Date.now())))
+      .catch((error) => dispatch(fetchingRepliesError(error)))
   }
 }
 

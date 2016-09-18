@@ -12,7 +12,7 @@ import {
   darkBtn,
   errorMsg,
 } from 'sharedStyles/styles.css'
-import { DuckContainer } from 'containers'
+import { DuckContainer, RepliesContainer } from 'containers'
 import { formatReply } from 'helpers/utils'
 
 DuckDetails.propTypes = {
@@ -57,7 +57,7 @@ export default function DuckDetails ({duckId, isFetching, authedUser, error, add
             <Reply submit={(replyText) => addAndHandleReply(duckId, formatReply(authedUser, replyText))} />
           </div>
           <div className={repliesContainer}>
-            {'REPLY SECTION'}
+            <RepliesContainer duckId={duckId} />
           </div>
         </div>}
       {error ? <p className={errorMsg}>{error}</p> : null}
