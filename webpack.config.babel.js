@@ -60,6 +60,7 @@ const developmentConfig = {
     hot: true,
     inline: true,
     progress: true,
+    port: 8000,
   },
   plugins: [ HtmlWebpackPluginConfig, new webpack.HotModuleReplacementPlugin() ],
 }
